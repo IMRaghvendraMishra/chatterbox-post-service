@@ -1,8 +1,8 @@
-package chatterbox.userservice.repository;
+package com.chatterbox.postservice.controller;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class UserRepositoryTest {
+class PostControllerTest {
 }
