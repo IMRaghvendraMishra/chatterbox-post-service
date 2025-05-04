@@ -12,4 +12,4 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
-    post-service-topic-name: chatterbox-posts
+    post-events-topic-name: chatterbox-post-events

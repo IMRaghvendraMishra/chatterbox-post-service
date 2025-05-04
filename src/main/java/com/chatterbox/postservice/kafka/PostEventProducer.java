@@ -19,7 +19,7 @@ public class PostEventProducer {
     @Autowired private KafkaTemplate<String, String> kafkaTemplate;
     @Autowired private PostEventJsonMapper mapper;
 
-    @Value("${spring.kafka.post-service-topic-name}")
+    @Value("${spring.kafka.post-events-topic-name}")
     private String postServiceTopicName;
 
     /**
