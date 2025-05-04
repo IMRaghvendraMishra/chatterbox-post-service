@@ -1,5 +1,11 @@
 package com.chatterbox.postservice.repository;
 
-public interface PostRepository {
-    // For future use with actual DB like MongoDB or PostgreSQL
+import java.util.List;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import com.chatterbox.postservice.model.Post;
+
+public interface PostRepository extends MongoRepository<Post, String>{
+	
+	List<Post> findByUserId(String userId);
 }
