@@ -17,9 +17,9 @@ public class PostService {
     }
 
     public List<Post> getPostsByUserId(String userId) {
-        Post post1 = new Post("post-id", userId, "content", Instant.now());
-        Post post2 = new Post("post-id", userId, "content", Instant.now());
-        Post post3 = new Post("post-id", userId, "content", Instant.now());
+        Post post1 = new Post("post-id1", userId, "content", Instant.now());
+        Post post2 = new Post("post-id2", userId, "content", Instant.now());
+        Post post3 = new Post("post-id3", userId, "content", Instant.now());
         List<Post> postList = new ArrayList<>();
         postList.add(post1);
         postList.add(post2);

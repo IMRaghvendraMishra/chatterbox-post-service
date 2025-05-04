@@ -1,5 +1,6 @@
 package com.chatterbox.postservice.controller;
 
+import com.chatterbox.postservice.kafka.PostEventProducer;
 import com.chatterbox.postservice.model.Post;
 import com.chatterbox.postservice.service.PostService;
 import lombok.AllArgsConstructor;
@@ -21,10 +22,13 @@ import java.util.List;
 public class PostController {
 
     @Autowired private PostService postService;
+    @Autowired private PostEventProducer postEventProducer;
 
     @PostMapping
     public Post createPost(@RequestBody Post post) {
-        return postService.createPost(post);
+        var updatedPost = postService.createPost(post);
+        postEventProducer.sendPostCreatedEvent(post); // Send event to Kafka topic
+        return updatedPost;
     }
 
     @GetMapping("/user/{userId}")
