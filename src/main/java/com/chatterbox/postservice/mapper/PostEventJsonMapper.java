@@ -8,6 +8,22 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Utility service for mapping between domain objects and their JSON representations
+ * using Jackson's {@link ObjectMapper}.
+ *
+ * <p>
+ * Responsible for:
+ * <ul>
+ *     <li>Serializing {@link Post} objects into JSON strings for Kafka publishing.</li>
+ *     <li>Deserializing JSON responses from User Service into {@link User} objects.</li>
+ * </ul>
+ *
+ * <p>
+ * Logs errors for mapping failures without throwing exceptions, returning empty or null
+ * values instead to maintain service flow.
+ * </p>
+ */
 @Service
 @Log4j2
 public class PostEventJsonMapper {

@@ -10,6 +10,21 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+/**
+ * Kafka producer service for publishing post creation events to the configured topic
+ * in the ChatterBox platform.
+ *
+ * <p>
+ * Converts {@link com.chatterbox.postservice.model.Post} objects to JSON strings using
+ * {@link com.chatterbox.postservice.mapper.PostEventJsonMapper} and sends them to the Kafka
+ * topic defined by the <code>spring.kafka.post-events-topic-name</code> property.
+ * </p>
+ *
+ * <p>
+ * This service enables asynchronous communication between microservices by emitting events
+ * that can be consumed by other components (e.g., NotificationService).
+ * </p>
+ */
 @Service
 @Log4j2
 @NoArgsConstructor

@@ -13,6 +13,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+/**
+ * Validator component responsible for validating the business logic of post-related operations in the ChatterBox platform.
+ * <p>
+ * This class validates key aspects of a post, including ensuring that the user exists, verifying that required fields
+ * are provided, and ensuring that the post content meets specified criteria (e.g., length).
+ * </p>
+ *
+ * <p>
+ * Key responsibilities:
+ * <ul>
+ *   <li>Validating the existence of a user by their username</li>
+ *   <li>Validating post content to ensure it's not empty and within allowed length ranges</li>
+ *   <li>Validating that required fields (e.g., username, postId) are not empty or null</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * This component integrates with the {@link HttpClientConnector} to fetch user data for validation purposes.
+ * </p>
+ */
 @Component
 @NoArgsConstructor
 @AllArgsConstructor
@@ -60,7 +80,4 @@ public class PostServiceValidator {
                     + " characters and maximum " + maxPostContentLength + " characters");
         }
     }
-
-
-
 }

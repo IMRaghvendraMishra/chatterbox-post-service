@@ -19,11 +19,11 @@ This service is stateless, exposing REST APIs and internally handling data via m
 
 ## 📘 Exposed APIs
 
-| Method | Endpoint               | Description                               |
-|--------|------------------------|-------------------------------------------|
-| POST   | `/posts`               | Create a new text post (auth to be added) |
-| GET    | `/posts/user/{userId}` | Get all posts by a specific user          |
-| GET    | `/posts/post/{postId}` | Get a specific post by its ID             |
+| Method | Endpoint                 | Description                               |
+|--------|--------------------------|-------------------------------------------|
+| POST   | `/posts`                 | Create a new text post (auth to be added) |
+| GET    | `/posts/user/{username}` | Get all posts by a specific user          |
+| GET    | `/posts/post/{postId}`   | Get a specific post by its ID             |
 
 ## 🛠 Technology Stack
 

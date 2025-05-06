@@ -15,20 +15,24 @@ import java.util.List;
  * Service layer responsible for managing operations related to posts within the ChatterBox platform.
  * <p>
  * This class handles the core business logic for creating, updating, retrieving, and deleting posts.
- * It ensures that all input data is validated through the {@link PostServiceValidator} before being
- * persisted or manipulated via the {@link PostRepository}.
- * <p>
- * Logging is used to record key actions for monitoring and debugging purposes.
+ * It ensures that all input data is validated through the {@link PostServiceValidator} before being persisted
+ * or manipulated via the {@link PostRepository}.
+ * </p>
  *
- * <p>Responsibilities include:
+ * <p>
+ * Responsibilities include:
  * <ul>
  *   <li>Validating and saving new posts</li>
  *   <li>Updating existing posts</li>
  *   <li>Fetching posts by post ID or username</li>
  *   <li>Deleting individual posts or bulk deletions by username or system-wide</li>
  * </ul>
+ * </p>
+ *
+ * <p>
+ * The service also leverages logging for key actions and errors, ensuring better monitoring and debugging.
+ * </p>
  */
-
 @Service
 @AllArgsConstructor
 @Log4j2
