@@ -1,6 +1,7 @@
 package com.chatterbox.postservice.validator;
 
 import com.chatterbox.postservice.connector.HttpClientConnector;
+import com.chatterbox.postservice.exception.InvalidUserException;
 import com.chatterbox.postservice.exception.MandatoryFieldException;
 import com.chatterbox.postservice.exception.PostContentException;
 import com.chatterbox.postservice.model.Post;
@@ -36,7 +37,13 @@ public class PostServiceValidator {
     }
 
     public void validateUsername(String username) {
-
+        if(Strings.isBlank(username)) {
+            throw new MandatoryFieldException("username cannot be empty or null");
+        }
+        User user = httpClientConnector.getUserByUsername(username);
+        if(user == null || !user.getUserName().equalsIgnoreCase(username)) {
+            throw new InvalidUserException("User with username " + username + " does not exist");
+        }
     }
 
     public void validatePostId(String postId) {
