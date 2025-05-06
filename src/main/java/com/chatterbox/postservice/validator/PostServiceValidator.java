@@ -39,9 +39,9 @@ import org.springframework.stereotype.Component;
 public class PostServiceValidator {
 
     @Value("${post.content.min}")
-    private int minPostContentLength;
+    int minPostContentLength;
     @Value("${post.content.max}")
-    private int maxPostContentLength;
+    int maxPostContentLength;
 
     @Autowired private HttpClientConnector httpClientConnector;
 
