@@ -13,3 +13,8 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
     post-events-topic-name: chatterbox-post-events
+
+logging:
+  level:
+    com.chatterbox.postservice: INFO
+
