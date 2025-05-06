@@ -1,6 +1,7 @@
 package com.chatterbox.postservice.mapper;
 
 import com.chatterbox.postservice.model.Post;
+import com.chatterbox.postservice.model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
@@ -21,5 +22,14 @@ public class PostEventJsonMapper {
             log.error("Unable to map PostEvent object to JSON");
         }
         return json;
+    }
+
+    public User jsonToUser(String json) {
+        try {
+            return mapper.readValue(json, User.class);
+        } catch (JsonProcessingException e) {
+            log.error("Unable to parse JSON to User object", e);
+            return null;
+        }
     }
 }
