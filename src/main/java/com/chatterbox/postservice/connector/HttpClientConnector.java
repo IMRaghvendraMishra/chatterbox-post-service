@@ -1,7 +1,7 @@
 package com.chatterbox.postservice.connector;
 
 import com.chatterbox.postservice.exception.InvalidUserException;
-import com.chatterbox.postservice.mapper.PostEventJsonMapper;
+import com.chatterbox.postservice.mapper.PostServiceJsonMapper;
 import com.chatterbox.postservice.model.User;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -29,7 +29,7 @@ import java.time.Duration;
  * <ul>
  *   <li>Construct the complete URI using a configurable base path and the provided username.</li>
  *   <li>Execute the HTTP GET call to retrieve user information.</li>
- *   <li>Convert the JSON response into a {@link User} object using {@link PostEventJsonMapper}.</li>
+ *   <li>Convert the JSON response into a {@link User} object using {@link PostServiceJsonMapper}.</li>
  *   <li>Handle HTTP errors or null responses by logging and throwing {@link InvalidUserException}.</li>
  * </ul>
  *
@@ -47,7 +47,7 @@ public class HttpClientConnector {
     @Value("${post.connector.user-service.get-by-username-endpoint}")
     private String getByUsernameAPIEndpoint;
 
-    @Autowired private PostEventJsonMapper mapper;
+    @Autowired private PostServiceJsonMapper mapper;
 
     public User getUserByUsername(String username) {
         String uri = getByUsernameAPIEndpoint + username;

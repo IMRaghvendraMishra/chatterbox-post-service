@@ -1,6 +1,6 @@
 package com.chatterbox.postservice.kafka;
 
-import com.chatterbox.postservice.mapper.PostEventJsonMapper;
+import com.chatterbox.postservice.mapper.PostServiceJsonMapper;
 import com.chatterbox.postservice.model.Post;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  *
  * <p>
  * Converts {@link com.chatterbox.postservice.model.Post} objects to JSON strings using
- * {@link com.chatterbox.postservice.mapper.PostEventJsonMapper} and sends them to the Kafka
+ * {@link PostServiceJsonMapper} and sends them to the Kafka
  * topic defined by the <code>spring.kafka.post-events-topic-name</code> property.
  * </p>
  *
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 public class PostEventProducer {
 
     @Autowired private KafkaTemplate<String, String> kafkaTemplate;
-    @Autowired private PostEventJsonMapper mapper;
+    @Autowired private PostServiceJsonMapper mapper;
 
     @Value("${spring.kafka.post-events-topic-name}")
     private String postServiceTopicName;

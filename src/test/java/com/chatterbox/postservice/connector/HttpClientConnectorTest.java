@@ -1,7 +1,7 @@
 package com.chatterbox.postservice.connector;
 
 import com.chatterbox.postservice.exception.InvalidUserException;
-import com.chatterbox.postservice.mapper.PostEventJsonMapper;
+import com.chatterbox.postservice.mapper.PostServiceJsonMapper;
 import com.chatterbox.postservice.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ public class HttpClientConnectorTest {
     private HttpClientResponse httpClientResponse;
 
     @Mock
-    private PostEventJsonMapper postEventJsonMapper;
+    private PostServiceJsonMapper postEventJsonMapper;
 
     @Mock
     private User mockUser;

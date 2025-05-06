@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Log4j2
-public class PostEventJsonMapper {
+public class PostServiceJsonMapper {
 
     @Autowired ObjectMapper mapper;
 
