@@ -3,8 +3,10 @@ package com.chatterbox.postservice.connector;
 import com.chatterbox.postservice.exception.InvalidUserException;
 import com.chatterbox.postservice.mapper.PostEventJsonMapper;
 import com.chatterbox.postservice.model.User;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
@@ -14,16 +16,17 @@ import reactor.util.function.Tuple2;
 import java.time.Duration;
 
 @Component
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Log4j2
 public class HttpClientConnector {
 
-    private static final String USER_SERVICE_BASE_URL = "http://localhost:9091/api/users/username/";
+    @Value("${post.connector.user-service.get-by-username-endpoint}")
+    private String getByUsernameAPIEndpoint;
 
-    private final PostEventJsonMapper mapper;
+    @Autowired private PostEventJsonMapper mapper;
 
     public User getUserByUsername(String username) {
-        String uri = USER_SERVICE_BASE_URL + username;
+        String uri = getByUsernameAPIEndpoint + username;
 
         Tuple2<HttpClientResponse, String> response = HttpClient.create()
                 .headers(h -> h.add("Accept", "application/json"))
