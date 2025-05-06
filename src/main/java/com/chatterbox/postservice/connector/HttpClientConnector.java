@@ -15,6 +15,25 @@ import reactor.util.function.Tuple2;
 
 import java.time.Duration;
 
+/**
+ * Connector component responsible for making HTTP calls to the User Service to fetch user details.
+ * <p>
+ * This class uses Reactor Netty's {@link HttpClient} to perform non-blocking HTTP requests, but
+ * blocks the result synchronously using {@code block()} with a timeout to integrate with
+ * the synchronous Post Service logic.
+ * <p>
+ * Key Responsibilities:
+ * <ul>
+ *   <li>Build the full URI using a configurable base endpoint and the provided username</li>
+ *   <li>Perform GET request to retrieve user details from the User Service</li>
+ *   <li>Parse JSON response into a {@link User} object using {@link PostEventJsonMapper}</li>
+ *   <li>Log errors and throw {@link com.chatterbox.postservice.exception.InvalidUserException}
+ *       for non-2xx HTTP responses or null responses</li>
+ * </ul>
+ * <p>
+ * The endpoint URI is configured using the property {@code post.connector.user-service.get-by-username-endpoint}
+ * in the application configuration file.
+ */
 @Component
 @NoArgsConstructor
 @Log4j2
