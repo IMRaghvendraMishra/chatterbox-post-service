@@ -35,7 +35,7 @@ public class PostEventProducer {
     @Autowired private PostServiceJsonMapper mapper;
 
     @Value("${spring.kafka.post-events-topic-name}")
-    private String postServiceTopicName;
+    String postServiceTopicName;
 
     /**
      * Send post event to Kafka broker
