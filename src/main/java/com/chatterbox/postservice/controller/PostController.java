@@ -27,10 +27,10 @@ import java.util.Map;
  * <ul>
  *     <li>POST /api/posts/create - Create a new post and publish a Kafka event.</li>
  *     <li>POST /api/posts/update - Update an existing post.</li>
- *     <li>GET /api/posts/user/{userId} - Get all posts by a specific user.</li>
+ *     <li>GET /api/posts/user/{username} - Get all posts by a specific user.</li>
  *     <li>GET /api/posts/post/{postId} - Get a single post by its ID.</li>
  *     <li>DELETE /api/posts/delete/post/{postId} - Delete a post by its ID.</li>
- *     <li>DELETE /api/posts/delete/user/{userId} - Delete all posts by a user.</li>
+ *     <li>DELETE /api/posts/delete/user/{username} - Delete all posts by a user.</li>
  *     <li>DELETE /api/posts/deleteAll - Delete all posts in the system.</li>
  * </ul>
  *
@@ -52,7 +52,7 @@ public class PostController {
     // Create a new post
     @PostMapping
     public ResponseEntity<String> createPost(@Valid @RequestBody Post post) {
-        log.info("Creating post for userId: {}", post.getUserId());
+        log.info("Creating post for username: {}", post.getUsername());
         String result = postService.createPost(post);
         postEventProducer.sendPostCreatedEvent(post);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
@@ -68,18 +68,18 @@ public class PostController {
     }
 
     // Get all posts by user
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Post>> getPostsByUserId(@PathVariable String userId) {
-        log.info("Fetching posts for userId: {}", userId);
-        List<Post> posts = postService.getPostsByUserId(userId);
+    @GetMapping("/user/{username}")
+    public ResponseEntity<List<Post>> getPostsByUsername(@PathVariable String username) {
+        log.info("Fetching posts for username: {}", username);
+        List<Post> posts = postService.getPostsByUsername(username);
         return ResponseEntity.ok(posts);
     }
 
     // Get post by ID
     @GetMapping("/{postId}")
-    public ResponseEntity<Post> getPostById(@PathVariable String postId) throws Exception {
+    public ResponseEntity<Post> getPostById(@PathVariable String postId) {
         log.info("Fetching post by id: {}", postId);
-        Post post = postService.getPostById(postId);
+        Post post = postService.getPostByPostId(postId);
         return ResponseEntity.ok(post);
     }
 
@@ -92,10 +92,10 @@ public class PostController {
     }
 
     // Delete all posts by a specific user
-    @DeleteMapping("/user/{userId}")
-    public ResponseEntity<String> deletePostsByUserId(@PathVariable String userId) {
-        log.info("Deleting all posts by userId: {}", userId);
-        String response = postService.deletePostByUserId(userId);
+    @DeleteMapping("/user/{username}")
+    public ResponseEntity<String> deletePostsByUsername(@PathVariable String username) {
+        log.info("Deleting all posts by username: {}", username);
+        String response = postService.deletePostByUsername(username);
         return ResponseEntity.ok(response);
     }
 
