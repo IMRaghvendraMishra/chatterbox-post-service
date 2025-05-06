@@ -1,6 +1,7 @@
 package com.chatterbox.postservice.exception.handler;
 
 import com.chatterbox.postservice.exception.InvalidUserException;
+import com.chatterbox.postservice.exception.MandatoryFieldException;
 import com.chatterbox.postservice.exception.PostContentException;
 import com.chatterbox.postservice.exception.PostDoesNotExistException;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(PostDoesNotExistException.class)
     public ResponseEntity<Map<String, Object>> handlePostDoesNotExistException(PostDoesNotExistException ex) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    // Handle MandatoryFieldException
+    @ExceptionHandler(MandatoryFieldException.class)
+    public ResponseEntity<Map<String, Object>> handleMandatoryField(MandatoryFieldException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     // Catch-all for unhandled exceptions

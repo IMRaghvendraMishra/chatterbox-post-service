@@ -1,9 +1,11 @@
 package com.chatterbox.postservice.validator;
 
 import com.chatterbox.postservice.connector.HttpClientConnector;
+import com.chatterbox.postservice.exception.MandatoryFieldException;
 import com.chatterbox.postservice.exception.PostContentException;
 import com.chatterbox.postservice.model.Post;
 import com.chatterbox.postservice.model.User;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @NoArgsConstructor
+@AllArgsConstructor
 public class PostServiceValidator {
 
     @Value("${post.content.min}")
@@ -21,15 +24,15 @@ public class PostServiceValidator {
 
     @Autowired private HttpClientConnector httpClientConnector;
 
-    public void validateNewPost(Post post) {
+    /**
+     * Validate whether user exist
+     * Validate post content
+     */
+    public void validatePost(Post post) {
         User user = httpClientConnector.getUserByUsername(post.getUsername());
         if(user != null && user.getUserName().equals(post.getUsername())) {
             validatePostContent(post.getContent());
         }
-    }
-
-    public void validateUpdatePost(Post post) {
-
     }
 
     public void validateUsername(String username) {
@@ -37,6 +40,9 @@ public class PostServiceValidator {
     }
 
     public void validatePostId(String postId) {
+        if(Strings.isBlank(postId)) {
+            throw new MandatoryFieldException("postId cannot be empty or null");
+        }
 
     }
 

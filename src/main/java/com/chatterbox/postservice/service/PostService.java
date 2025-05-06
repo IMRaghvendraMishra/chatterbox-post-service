@@ -38,14 +38,16 @@ public class PostService {
     private PostServiceValidator validator;
 
     public String createPost(Post post) {
-        validator.validateNewPost(post);
+        validator.validatePost(post);
         post.setTimestamp(Instant.now());
         postRepository.save(post);
         return String.format("A new post with post id %s created by user %s", post.getPostId(), post.getUsername());
     }
 
     public String updatePost(Post post) {
-        validator.validateUpdatePost(post);
+        // validate if post already exist
+        getPostByPostId(post.getPostId());
+        validator.validatePost(post);
         post.setTimestamp(Instant.now());
         postRepository.save(post);
         return String.format("A post with post id %s is updated by username %s", post.getPostId(), post.getUsername());
