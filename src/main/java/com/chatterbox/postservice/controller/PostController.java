@@ -83,6 +83,14 @@ public class PostController {
         return ResponseEntity.ok(post);
     }
 
+    // Get post by ID
+    @GetMapping
+    public ResponseEntity<List<Post>> getAllPosts() {
+        log.info("Fetching all posts");
+        List<Post> post = postService.getAllPosts();
+        return ResponseEntity.ok(post);
+    }
+
     // Delete a single post by postId
     @DeleteMapping("/{postId}")
     public ResponseEntity<String> deletePostByPostId(@PathVariable String postId) {

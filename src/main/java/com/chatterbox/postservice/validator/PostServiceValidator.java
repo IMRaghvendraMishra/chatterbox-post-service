@@ -50,7 +50,6 @@ public class PostServiceValidator {
         if(Strings.isBlank(postId)) {
             throw new MandatoryFieldException("postId cannot be empty or null");
         }
-
     }
 
     private void validatePostContent(String content) {

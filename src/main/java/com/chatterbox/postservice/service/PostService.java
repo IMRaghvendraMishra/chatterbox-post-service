@@ -64,9 +64,12 @@ public class PostService {
                 new PostDoesNotExistException("Post with ID " + postId + " not found"));
     }
 
+    public List<Post> getAllPosts() {
+        return postRepository.findAll();
+    }
+
     public String deletePostByPostId(String postId) {
         validator.validatePostId(postId);
-
         postRepository.findById(postId).ifPresent(postRepository::delete);
         log.info("Deleted post with ID: {}", postId);
         return "Deleted post with ID: " + postId;
