@@ -1,6 +1,6 @@
 package com.chatterbox.postservice.controller;
 
-import com.chatterbox.postservice.kafka.PostEventProducer;
+import com.chatterbox.postservice.messaging.PostEventProducer;
 import com.chatterbox.postservice.model.Post;
 import com.chatterbox.postservice.service.PostService;
 import jakarta.validation.Valid;

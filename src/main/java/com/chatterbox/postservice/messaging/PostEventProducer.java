@@ -1,4 +1,4 @@
-package com.chatterbox.postservice.kafka;
+package com.chatterbox.postservice.messaging;
 
 import com.chatterbox.postservice.mapper.PostServiceJsonMapper;
 import com.chatterbox.postservice.model.Post;
